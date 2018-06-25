@@ -2,7 +2,8 @@
 
 namespace Wildside\Userstamps\Listeners;
 
-class Deleting {
+class Deleting
+{
 
     /**
      * When the model is being deleted.
@@ -12,14 +13,14 @@ class Deleting {
      */
     public function handle($model)
     {
-        if (! $model -> isUserstamping()) {
+        if (!$model->isUserstamping()) {
             return;
         }
 
-        if (is_null($model -> {$model -> getDeletedByColumn()})) {
-            $model -> {$model -> getDeletedByColumn()} = auth() -> id();
+        if (is_null($model->{$model->getDeletedByColumn()})) {
+            $model->{$model->getDeletedByColumn()} = auth()->id() ? auth()->id() : config('userstamps.default_user_id');
         }
 
-        $model -> save();
+        $model->save();
     }
 }

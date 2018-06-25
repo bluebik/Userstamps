@@ -2,7 +2,8 @@
 
 namespace Wildside\Userstamps;
 
-trait Userstamps {
+trait Userstamps
+{
 
     /**
      * Whether we're currently maintaing userstamps.
@@ -58,7 +59,7 @@ trait Userstamps {
      */
     public function creator()
     {
-        return $this -> belongsTo($this -> getUserClass(), 'created_by');
+        return $this->belongsTo($this->getUserClass(), 'created_by');
     }
 
     /**
@@ -66,7 +67,7 @@ trait Userstamps {
      */
     public function editor()
     {
-        return $this -> belongsTo($this -> getUserClass(), 'updated_by');
+        return $this->belongsTo($this->getUserClass(), 'updated_by');
     }
 
     /**
@@ -74,7 +75,7 @@ trait Userstamps {
      */
     public function destroyer()
     {
-        return $this -> belongsTo($this -> getUserClass(), 'deleted_by');
+        return $this->belongsTo($this->getUserClass(), 'deleted_by');
     }
 
     /**
@@ -114,7 +115,7 @@ trait Userstamps {
      */
     public function isUserstamping()
     {
-        return $this -> userstamping;
+        return $this->userstamping;
     }
 
     /**
@@ -124,7 +125,7 @@ trait Userstamps {
      */
     public function stopUserstamping()
     {
-        $this -> userstamping = false;
+        $this->userstamping = false;
     }
 
     /**
@@ -134,7 +135,7 @@ trait Userstamps {
      */
     public function startUserstamping()
     {
-        $this -> userstamping = true;
+        $this->userstamping = true;
     }
 
     /**
@@ -145,9 +146,9 @@ trait Userstamps {
     protected function getUserClass()
     {
         if (get_class(auth()) === 'Illuminate\Auth\Guard') {
-            return auth() -> getProvider() -> getModel();
+            return auth()->getProvider()->getModel();
         }
 
-        return auth() -> guard() -> getProvider() -> getModel();
+        return auth()->guard()->getProvider()->getModel();
     }
 }

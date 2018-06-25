@@ -2,7 +2,8 @@
 
 namespace Wildside\Userstamps\Listeners;
 
-class Creating {
+class Creating
+{
 
     /**
      * When the model is being created.
@@ -12,16 +13,16 @@ class Creating {
      */
     public function handle($model)
     {
-        if (! $model -> isUserstamping()) {
+        if (!$model->isUserstamping()) {
             return;
         }
 
-        if (is_null($model -> {$model -> getCreatedByColumn()})) {
-            $model -> {$model -> getCreatedByColumn()} = auth() -> id();
+        if (is_null($model->{$model->getCreatedByColumn()})) {
+            $model->{$model->getCreatedByColumn()} = auth()->id() ? auth()->id() : config('userstamps.default_user_id');
         }
 
-        if (is_null($model -> {$model -> getUpdatedByColumn()}) && ! is_null($model -> getUpdatedByColumn())) {
-            $model -> {$model -> getUpdatedByColumn()} = auth() -> id();
+        if (is_null($model->{$model->getUpdatedByColumn()}) && !is_null($model->getUpdatedByColumn())) {
+            $model->{$model->getUpdatedByColumn()} = auth()->id() ? auth()->id() : config('userstamps.default_user_id');
         }
     }
 }
