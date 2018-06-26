@@ -25,12 +25,5 @@
     "psr-4": {
       "Wildside\\Userstamps\\": "src"
     }
-  },
-  "extra": {
-    "laravel": {
-      "providers": [
-        "Wildside\\Userstamps\\UserstampsServiceProvider"
-      ]
-    }
   }
 }
