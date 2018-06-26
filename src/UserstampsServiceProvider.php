@@ -11,8 +11,6 @@ class UserstampsServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        $this->registerHelpers();
-
         if ($this->app->runningInConsole()) {
             $this->publishes([
                 $this->getConfigFile() => config_path('userstamps.php'),
@@ -34,7 +32,7 @@ class UserstampsServiceProvider extends ServiceProvider
     /**
      * @return string
      */
-    protected function getConfigFile(): string
+    protected function getConfigFile() : string
     {
         return __DIR__ . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . 'config' . DIRECTORY_SEPARATOR . 'userstamps.php';
     }
